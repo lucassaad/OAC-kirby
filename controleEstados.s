@@ -22,7 +22,7 @@ FimControle:ret
 		
 
 						
-controleParado:				# se o personagem deve estar parado
+controleParado:		
 	beqz a1, Incrementa		# se estado = 0 : incrementa estado 
 	mv a1, zero				# se estado != 0; estado <- 0
 

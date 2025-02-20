@@ -15,6 +15,10 @@ keyboard_input:
 	li t0, 'w'
 	beq t2, t0, CHAR_JUMP
 	
+	li t0, 'e'
+	beq t2, t0, PROX_FASE 
+	
+	
 NONE:
 	
 # atualiza a movimentação do kirby <- movendo(0)
@@ -28,35 +32,32 @@ FIM: ret				# retorna
 MAP_ESQ:	
 # checa se o personagem não vai colidir se for para esquerda: 
 	la t0, char_pos	
-	la t1, matriz1
 # SOMA AS LINHAS QUE PRECISAM SER PULADAS
 	lh t2, 2(t0)
 	li t3, 16
 	div t2, t2, t3 
 	li t3, 70
 	mul t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 # SOMA COLUNAS QUE PRECISAM SER PULADAS
 	lh t2, 0(t0)
 	li t3, 16
 	div t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 # SOMA O RESTO DAS COLUNAS QUE PRECISAM SER PULADAS
 	la t0, deslocamento_x_mapa
 	lh t2, 0(t0)
 	li t3, 16
 	div t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 	
 	li t3, 1
-	sub t1, t1, t3	
+	sub a0, a0, t3	
 	
-	lb t0, 0(t1)
-	beqz t0, C1
+	lb t0, 0(a0)
+	bnez t0, FIM
  
-	li t3, 12
-	beq t0, t3, C1
-	j FIM
+	
 	
 C1:	la t0, char_pos				 
 	lh t1, 0(t0)				# posição x do personagem
@@ -94,33 +95,31 @@ CON1:
 MAP_DIR:
 	# checa se o personagem não vai colidir se for para esquerda: 
 	la t0, char_pos	
-	la t1, matriz1
 # SOMA AS LINHAS QUE PRECISAM SER PULADAS
 	lh t2, 2(t0)
 	li t3, 16
 	div t2, t2, t3 
 	li t3, 70
 	mul t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 # SOMA COLUNAS QUE PRECISAM SER PULADAS
 	lh t2, 0(t0)
 	li t3, 16
 	div t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 # SOMA O RESTO DAS COLUNAS QUE PRECISAM SER PULADAS
 	la t0, deslocamento_x_mapa
 	lh t2, 0(t0)
 	li t3, 16
 	div t2, t2, t3
-	add t1, t1, t2
+	add a0, a0, t2
 	
-	addi t1, t1, 1
+	addi a0, a0, 1
 	
-	lb t0, 0(t1)
+	lb t0, 0(a0)
 	beqz t0, C2
  
-	li t3, 12
-	beq t0, t3, C2
+	
 	j FIM
 			
 C2:	la t0, char_pos
@@ -156,6 +155,10 @@ CON2:
 	j FIM
 
 CHAR_JUMP:
+    la t0, char_pos
+    lh t0, 2(t0)
+    li t1, 48
+    ble t0, t1, FIM 
 	la t0, caindo
 	sh zero, 0(t0)
 	la t0, subindo
@@ -168,3 +171,16 @@ CHAR_JUMP:
 	sh zero, 0(t0)
 	
 	j FIM
+
+PROX_FASE:
+    la t0, fase
+    li t1, 1
+    sh t1, 0(t0)
+	la t0, char_pos
+    sh zero, 0(t0)
+    li t1, 144
+    
+    sh t1, 2(t0)         
+    la t0, deslocamento_x_mapa
+    sh zero, 0(t0)
+    j FIM
