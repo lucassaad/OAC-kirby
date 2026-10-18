@@ -24,7 +24,7 @@ An academic game project written in RISC-V Assembly and inspired by *Kirby's Adv
 The project was developed for the FPGRARS simulator. From the repository root, run:
 
 ```sh
-./tools/fpgrars-x86_64-pc-windows-msvc--unb.exe main.s
+.\tools\fpgrars-x86_64-pc-windows-msvc--unb.exe main.s
 ```
 
 Include paths are relative to the repository root, so keep the root as the working directory when using the simulator or another FPGRARS distribution. The bundled executable is for Windows; on other operating systems, use a compatible version of the simulator.
