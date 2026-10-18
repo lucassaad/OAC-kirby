@@ -1,11 +1,11 @@
 .data
-	.include "tilesDir16.s"
-	.include "tilesEsq16.s"
-	.include "matriz1.s"
-	.include "matriz2.s"
-	.include "checagemMapa1.s"
-	.include "checagemMapa2.s"
-	.include "tiles.s"
+	.include "assets/tiles/tilesDir16.s"
+	.include "assets/tiles/tilesEsq16.s"
+	.include "assets/maps/matriz1.s"
+	.include "assets/maps/matriz2.s"
+	.include "assets/maps/checagemMapa1.s"
+	.include "assets/maps/checagemMapa2.s"
+	.include "assets/tiles/tiles.s"
 	
 	
 	deslocamento_x_mapa: 	.half 0
@@ -119,9 +119,9 @@ C8:	la a2, caindo
 
 
 	j loop
-.include "keyboard.s"
-.include "controleEstados.s"
-.include "print_tile.s"
-.include "print_map.s"
-.include "checaCaindo.s"
-.include "checaSubindo.s"
+.include "src/keyboard.s"
+.include "src/controleEstados.s"
+.include "src/print_tile.s"
+.include "src/print_map.s"
+.include "src/checaCaindo.s"
+.include "src/checaSubindo.s"
