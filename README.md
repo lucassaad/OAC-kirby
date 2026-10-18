@@ -24,7 +24,7 @@ Um projeto acadêmico de jogo em Assembly RISC-V inspirado em *Kirby's Adventure
 O projeto foi desenvolvido para o simulador FPGRARS. A partir da raiz do repositório, execute:
 
 ```sh
-./tools/fpgrars-x86_64-pc-windows-msvc--unb.exe main.s
+.\tools\fpgrars-x86_64-pc-windows-msvc--unb.exe main.s
 ```
 
 Os caminhos dos arquivos incluídos são relativos à raiz do repositório. Portanto, mantenha a raiz como diretório de trabalho ao usar o simulador ou outra distribuição do FPGRARS. O executável incluído é para Windows; em outros sistemas, use uma versão compatível do simulador.
